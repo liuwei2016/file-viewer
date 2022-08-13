@@ -181,8 +181,8 @@ export default {
       this.fileList =  fileList;
       const [fileObj] = fileList;
       const file =fileObj.raw
-      console.log(file)
-      console.log("change");
+      // console.log(file)
+      // console.log("change");
       console.log(getFileType(file), getFileSize(file))
       if (isCanDealPack(file)) {
         this.previewPackage(file)
