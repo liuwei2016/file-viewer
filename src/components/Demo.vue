@@ -3,10 +3,7 @@
     <div class="banner">
       <div class="container">
         <h1>
-          <div>
-             文档压缩包预览审查系统
-            <input class="file-select" type="file" @change="handleChange" />
-          </div>
+           文档压缩包预览审查系统
         </h1>
       </div>
 
@@ -14,6 +11,19 @@
     <div class="container flex">
 
       <div class="box1 box">
+         <el-upload
+          class="upload-demo"
+          drag
+          action="/"
+          :on-change="handleChange"
+          :auto-upload="false"
+           :file-list="fileList"
+          >
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
+        </el-upload>
+
         <el-tree :default-expanded-keys="[2]" node-key="id" :data="treeData" :props="defaultProps">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }} _ {{ data.id }}</span>
@@ -21,7 +31,7 @@
               <el-button type="text" size="mini">
                 {{ data.size }}
               </el-button>
-              <el-button v-if="canPreview(data)" type="text" @click="previewNodeFile(data.id)" size="mini">
+              <el-button style="color:darksalmon" v-if="canPreview(data)" type="text" @click="previewNodeFile(data.id)" size="mini">
                 预览
               </el-button>
             </span>
@@ -32,10 +42,6 @@
         <div v-show="loading" class="well loading">正在加载中，请耐心等待...</div>
         <div v-show="!loading" class="well" ref="output"></div>
       </div>
-
-
-
-
     </div>
   </div>
 </template>
@@ -62,7 +68,7 @@ function objToTree(objData) {
         node++
         if (obj[v].size) {
           window._fileInfo[id] = obj[v]
-          arr[i].size = Math.ceil(obj[v].size / 1024) + "k"
+          arr[i].size = Math.ceil(obj[v].size / 1024) + "kb"
         }
       }
     })
@@ -83,7 +89,7 @@ function objToTree(objData) {
  *
  */
 export default {
-  name: "HelloWorld",
+  name: "Demo",
   props: {
     msg: String,
   },
@@ -91,6 +97,7 @@ export default {
     return {
       acceptTypes:acceptTypes,
       treeData: [],
+      fileList:[],
       defaultProps: {
         children: 'children',
         label: 'name'
@@ -169,9 +176,13 @@ export default {
         this.loading = false;
       }
     },
-    handleChange(e) {
+    handleChange(f, fileList) {
       this.loading = true;
-      const [file] = e.target.files;
+      this.fileList =  fileList;
+      const [fileObj] = fileList;
+      const file =fileObj.raw
+      console.log(file)
+      console.log("change");
       console.log(getFileType(file), getFileSize(file))
       if (isCanDealPack(file)) {
         this.previewPackage(file)
@@ -206,6 +217,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.upload-demo{
+  margin: 10px auto;
+  text-align: center;
+}
 .flex {
   display: flex;
 }
@@ -249,7 +265,8 @@ export default {
 .well {
   display: block;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px dashed #eee;
+  border-radius: 4px;
   margin: 5px;
   width: calc(100% - 12px);
   height: calc(100vh - 74px);

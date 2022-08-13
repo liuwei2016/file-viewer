@@ -1,20 +1,17 @@
 <template>
-<div>
-
-  <div class="text-box" v-if="type === 'md'" :class="dark ? 'code-dark' : 'code-default'">
-      <pre class="hljs" :class="'language-' + language">
-        <code v-html="mdToHtml(value)"></code>
-      </pre>
+  <div>
+    <el-button @click="showText = !showText">{{ showText === true ? '美化':'源文件'}}</el-button>
+    <div class="text-box htmledit_views markdown_views" v-if="type === 'md' && !showText" v-html="mdToHtml(value)">
     </div>
-    <div class="text-box" v-else :class="dark ? 'code-dark' : 'code-default'">
+    <div class="text-box" v-else-if="type === 'md' && !showText" :class="dark ? 'code-dark' : 'code-default'">
       <pre class="hljs" :class="'language-' + language">
         <code v-html="codeToHtml(value)"></code>
       </pre>
     </div>
-     <!-- <pre class="code-area">
-   {{ value }}
-  </pre> -->
-</div>
+    <pre v-else class="text-box">
+      <code>{{ value }}</code>
+      </pre>
+  </div>
 </template>
 
 <script>
@@ -24,10 +21,10 @@ import { marked } from 'marked'
 export default {
   name: 'CodeEditor',
   props: {
-    dark:{
+    dark: {
       type: Boolean,
       description: '主题色',
-      default:false
+      default: false
     },
     value: {
       type: String,
@@ -40,11 +37,12 @@ export default {
   },
   data() {
     return {
-      language :''
+      language: '',
+      showText: false
     }
 
   },
-  methods:{
+  methods: {
     mdToHtml(v) {
       let result = ""
       try {
@@ -70,13 +68,14 @@ export default {
 <style scoped>
 @import './markdown.css';
 @import './highlight.css';
+
 .text-box {
   display: block;
   margin: 0 auto;
   font-size: 12px;
-  padding:20px;
+  padding: 20px;
   box-sizing: border-box;
-  min-width:500px;
+  min-width: 500px;
   min-height: 500px;
   word-break: break-word;
   white-space: break-spaces;
