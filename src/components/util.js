@@ -32,10 +32,28 @@ export function getExtend(name) {
   return name.substr(dot + 1);
 }
 
+ 
+
 export async function render(buffer, type, target) {
   const handler = renders[type];
   if (handler) {
     return handler(buffer, target);
   }
   return renders.error(buffer, target, type);
+}
+
+export function getFileType(file){
+   var type = file.name.split(".").pop() || "unKnow"
+   return  type
+}
+export function isCanDealPack(file){
+  const curType = getFileType(file);
+  return ["zip","rar","7z"].includes(curType)
+}
+// 展示压缩包
+function displayPackage(){
+
+}
+export function getFileSize(file){
+ return  Math.floor(file.size/1024) +"k"
 }

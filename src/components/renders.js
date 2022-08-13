@@ -15,6 +15,19 @@ const VueWrapper = (el) => ({
 });
 
 const handlers = [
+   // 使用docxjs支持，目前效果最好的渲染器
+   {
+    accepts: ["zip","rar","7z"],
+    handler: async (buffer, target) => {
+      console.log("压缩包",buffer, target)
+      // const docxOptions = Object.assign(defaultOptions, {
+      //   debug: true,
+      //   experimental: true,
+      // });
+      // await renderAsync(buffer, target, null, docxOptions);
+      return VueWrapper(target);
+    },
+  },
   // 使用docxjs支持，目前效果最好的渲染器
   {
     accepts: ["docx"],
@@ -96,6 +109,7 @@ const handlers = [
     },
   },
 ];
+
 
 // 匹配
 export default handlers.reduce((result, { accepts, handler }) => {

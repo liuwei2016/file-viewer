@@ -4,23 +4,76 @@
       <div class="container">
         <h1>
           <div>
-            在线文档查看
+            智能文档或者压缩包查看
             <input class="file-select" type="file" @change="handleChange" />
           </div>
         </h1>
       </div>
+
     </div>
-    <div class="container">
-      <div v-show="loading" class="well loading">正在加载中，请耐心等待...</div>
-      <div v-show="!loading" class="well" ref="output"></div>
+    <div class="container flex">
+
+      <div class="box1 box">
+        <el-tree :default-expanded-keys="[1]" node-key="id" :data="treeData" :props="defaultProps">
+          <span class="custom-tree-node" slot-scope="{ node, data }">
+            <span>{{ node.label }} _ {{ data.id }}</span>
+            <span v-if="data.size">
+              <el-button type="text" size="mini">
+                {{ data.size }}
+              </el-button>
+              <el-button type="text" @click="previewNodeFile(data.id)" size="mini">
+                预览
+              </el-button>
+            </span>
+          </span>
+        </el-tree>
+      </div>
+      <div class="box2 box">
+        <div v-show="loading" class="well loading">正在加载中，请耐心等待...</div>
+        <div v-show="!loading" class="well" ref="output"></div>
+      </div>
+
+
+
+
     </div>
   </div>
 </template>
 
 <script>
-import { getExtend, readBuffer, render } from "@/components/util";
+import { getExtend, readBuffer, render, isCanDealPack, getFileSize, getFileType } from "@/components/util";
 import { parse } from "qs";
+import { getPackageInfo } from "./package";
+window._fileInfo = {}
 
+function objToTree(objData) {
+  let arr = []
+  let node = 0;
+  let id = 0;
+  function objToArray(obj, arr) {
+    Object.keys(obj).forEach((v, i) => {
+      arr.push({ name: v, children: [], id: id++ })
+      if (Object.keys(obj[v]).length !== 0) {
+        objToArray(obj[v], arr[i].children)
+      } else {
+        node++
+        if (obj[v].size) {
+          window._fileInfo[id] = obj[v]
+          arr[i].size = Math.ceil(obj[v].size / 1024) + "k"
+        }
+      }
+    })
+
+  }
+  objToArray(objData, arr)
+  return {
+    dir: arr,
+    count: node
+  }
+}
+
+// var result = objToTree(objData)
+// console.log(result ,"33344")
 /**
  * 支持嵌入式显示，基于postMessage支持跨域
  * 示例代码：
@@ -33,6 +86,11 @@ export default {
   },
   data() {
     return {
+      treeData: [],
+      defaultProps: {
+        children: 'children',
+        label: 'name'
+      },
       // 加载状态跟踪
       loading: false,
       // 上个渲染实例
@@ -57,10 +115,31 @@ export default {
     }
   },
   methods: {
-    async handleChange(e) {
-      this.loading = true;
+    previewNodeFile(id) {
+      console.log(id)
+      let file = window._fileInfo[id]
+      if(file){
+        this.previewFile(file)
+      }
+    },
+    // handleNodeClick(data) {
+    //   console.log(data);
+    // },
+    // 获取压缩包信息
+    async getPackageInfo(file) {
+      let obj = null;
       try {
-        const [file] = e.target.files;
+        obj = await getPackageInfo(file);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        window._package = obj;
+      }
+      return obj
+    },
+    // 预览文件
+    async previewFile(file) {
+      try {
         const arrayBuffer = await readBuffer(file);
         this.loading = false;
         this.last = await this.displayResult(arrayBuffer, file);
@@ -68,6 +147,29 @@ export default {
         console.error(e);
       } finally {
         this.loading = false;
+      }
+    },
+    // 预览压缩包
+    async previewPackage(file) {
+      try {
+        let data = await this.getPackageInfo(file)
+        let info = objToTree(data)
+        window._pack_info = info;
+        this.treeData = info.dir[0].children
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    handleChange(e) {
+      this.loading = true;
+      const [file] = e.target.files;
+      console.log(getFileType(file), getFileSize(file))
+      if (isCanDealPack(file)) {
+        this.previewPackage(file)
+      } else {
+        this.previewFile(file)
       }
     },
     displayResult(buffer, file) {
@@ -96,6 +198,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.flex {
+  display: flex;
+}
+
+.flex .box {
+  flex: 1;
+}
+
 .banner {
   overflow: auto;
   text-align: center;
