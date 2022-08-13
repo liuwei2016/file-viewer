@@ -37,7 +37,7 @@ export function getExtend(name) {
 export async function render(buffer, type, target) {
   const handler = renders[type];
   if (handler) {
-    return handler(buffer, target);
+    return handler(buffer, target,type);
   }
   return renders.error(buffer, target, type);
 }

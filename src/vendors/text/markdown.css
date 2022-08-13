@@ -1,0 +1,1831 @@
+/* 文章内容的css  */
+/* 文章字体 */
+.htmledit_views {
+  padding: 0;
+  margin: 0;
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 2px;
+  background: #fff;
+  font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, WenQuanYi Micro Hei, sans-serif, SimHei, SimSun;
+}
+
+/*contents.css*/
+.cke_editable {
+  overflow: hidden;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.htmledit_views img.right {
+  border: 1px solid #ccc;
+  float: right;
+  margin-left: 15px;
+  padding: 5px;
+}
+
+.htmledit_views img.left {
+  border: 1px solid #ccc;
+  float: left;
+  margin-right: 15px;
+  padding: 5px;
+}
+
+.htmledit_views .marker {
+  background-color: Yellow;
+}
+
+.htmledit_views span[lang] {
+  font-style: italic;
+}
+
+.htmledit_views figure {
+  text-align: center;
+  margin: 0 24px;
+  display: inline-block;
+}
+
+.htmledit_views figure > figcaption {
+  text-align: center;
+  margin: 8px;
+  color: #999;
+  font-size: 14px;
+  display: block; /* For IE8 */
+}
+
+.htmledit_views a > img {
+  padding: 1px;
+  margin: 1px;
+  border: none;
+  outline: 1px solid #0782c1;
+}
+
+/* Widget Styles */
+.htmledit_views .code-featured {
+  border: 5px solid red;
+}
+
+.htmledit_views .math-featured {
+  padding: 20px;
+  box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+  background-color: rgba(255, 0, 0, 0.05);
+  margin: 10px;
+}
+
+.htmledit_views .image-clean {
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+.htmledit_views .image-clean > figcaption {
+  font-size: 0.9em;
+  text-align: right;
+}
+
+.htmledit_views .image-grayscale {
+  background-color: white;
+  color: #666;
+}
+
+.htmledit_views .image-grayscale img,
+.htmledit_views img.image-grayscale {
+  filter: grayscale(100%);
+}
+
+.htmledit_views .embed-240p {
+  max-width: 426px;
+  max-height: 240px;
+  margin: 0 auto;
+}
+
+.htmledit_views .embed-360p {
+  max-width: 640px;
+  max-height: 360px;
+  margin: 0 auto;
+}
+
+.htmledit_views .embed-480p {
+  max-width: 854px;
+  max-height: 480px;
+  margin: 0 auto;
+}
+
+.htmledit_views .embed-720p {
+  max-width: 1280px;
+  max-height: 720px;
+  margin: 0 auto;
+}
+
+.htmledit_views .embed-1080p {
+  max-width: 1920px;
+  max-height: 1080px;
+  margin: 0 auto;
+}
+
+/* 文章正文 */
+.htmledit_views p {
+  font-size: 16px;
+  color: #4d4d4d;
+  font-weight: normal;
+  line-height: 26px;
+  margin: 0 0 16px 0;
+}
+
+p[align='center'] {
+  text-align: center;
+}
+
+/* 地址斜体 */
+.htmledit_views i,
+.htmledit_views cite,
+.htmledit_views em,
+.htmledit_views var,
+.htmledit_views address,
+.htmledit_views dfn {
+  font-style: italic;
+}
+.htmledit_views img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 正文加粗 */
+.htmledit_views strong {
+  font-weight: bold;
+}
+
+.htmledit_views strong span {
+  font-weight: bold;
+}
+
+.htmledit_views * {
+  box-sizing: border-box;
+}
+
+.htmledit_views h1,
+.htmledit_views h2,
+.htmledit_views h3,
+.htmledit_views h4,
+.htmledit_views h5,
+.htmledit_views h6 {
+  color: #4f4f4f;
+  margin: 8px 0 16px 0;
+  font-weight: bold;
+}
+
+.htmledit_views h1 span,
+.htmledit_views h2 span,
+.htmledit_views h3 span,
+.htmledit_views h4 span,
+.htmledit_views h5 span,
+.htmledit_views h6 span {
+  font-weight: bold;
+}
+
+/*有序、无序列表*/
+.htmledit_views ul,
+.htmledit_views ol {
+  margin: 0 0 24px 0;
+  padding: 0;
+  font-size: 16px;
+  word-break: break-word;
+}
+
+.htmledit_views ul ol {
+  margin: 0 0 24px 32px;
+}
+
+.htmledit_views ul li {
+  list-style-type: disc;
+  margin: 8px 0 0 32px;
+}
+.htmledit_views ol li {
+  list-style-type: decimal;
+  margin-left: 40px;
+  margin-top: 8px;
+}
+
+/* 图片 */
+.htmledit_views img {
+  /* max-width: 100%; */
+}
+
+/* 标题 */
+
+.htmledit_views h1 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.htmledit_views h2 {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.htmledit_views h3 {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.htmledit_views h4 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.htmledit_views h5 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.htmledit_views h6 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* 引用 */
+.htmledit_views blockquote {
+  display: block;
+  padding: 16px 16px 0 16px;
+  margin: 0 0 24px 0;
+  border-left: 8px solid #dddfe4;
+  background: #eef0f4;
+  overflow: auto;
+  overflow-scrolling: touch;
+  word-wrap: normal;
+  word-break: normal;
+}
+
+.htmledit_views blockquote ul,
+.htmledit_views blockquote ol {
+  margin-bottom: 16px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.htmledit_views blockquote ul li {
+  margin-bottom: 0;
+}
+.htmledit_views blockquote ol li {
+  margin-bottom: 0;
+}
+
+/* 引用 - 文字*/
+.htmledit_views blockquote p {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: normal;
+  margin-bottom: 16px;
+  color: #4f4f4f;
+}
+
+/* 分割线 */
+.htmledit_views hr {
+  margin: 24px 0;
+  border: none;
+  border-bottom: solid #ccc 1px;
+}
+
+/*表格*/
+.htmledit_views tbody {
+  border: 0;
+}
+
+.htmledit_views table tr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  background-color: white;
+}
+
+.htmledit_views table {
+  border-collapse: collapse;
+  display: table;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: fixed;
+  word-break: break-all;
+}
+
+.htmledit_views tbody {
+  border: 0;
+}
+
+.htmledit_views table tr:nth-child(2n) {
+  background-color: #f7f7f7;
+}
+
+.htmledit_views table tr th,
+.htmledit_views table tr td {
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  padding: 8px;
+  text-align: left;
+}
+
+.htmledit_views table tr th p {
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.htmledit_views table tr td p {
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.htmledit_views table tr th code,
+.htmledit_views table tr td code {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.htmledit_views table tr th {
+  font-weight: bold;
+  background-color: #eff3f5;
+}
+
+/*目录列表*/
+.htmledit_views dl {
+  margin: 24px;
+}
+
+.htmledit_views dl dt {
+  margin: 8px;
+  font-weight: bold;
+}
+.htmledit_views dl dt dd {
+  margin: 8px;
+}
+
+/*.htmledit_views dd p{
+      margin: 8px;
+  }*/
+
+/*abbr*/
+.htmledit_views abbr[title],
+.htmledit_views abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999;
+}
+
+/*首字母缩略词*/
+.htmledit_views .initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+/*首字母缩略词*/
+.htmledit_views pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0 0 24px 0;
+  /* background-color: #f0f0f0; */
+  overflow-x: auto;
+  padding: 8px;
+}
+
+.marker {
+  background-color: Yellow;
+}
+
+/*数学公式*/
+htmledit_views img.mathcode {
+  margin: 0 8px;
+}
+/*代码块字体*/
+/* .htmledit_views code, */
+.htmledit_views kbd,
+.htmledit_views pre,
+.htmledit_views samp {
+  font-family: Consolas, Inconsolata, Courier, monospace;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000;
+}
+
+.htmledit_views code {
+  /* color: #c7254e; */
+  /* background-color: #f9f2f4; */
+  border-radius: 4px;
+}
+
+/*超链接*/
+
+.htmledit_views a {
+  color: #6795b5;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.htmledit_views a:hover,
+.htmledit_views a:focus {
+  color: #409eff;
+  text-decoration: underline;
+}
+
+.htmledit_views a:visited {
+  color: #6795b5;
+}
+.htmledit_views .hot-keyword:visited {
+  color: #3399ea;
+}
+/*脚注*/
+.htmledit_views .footnote {
+  vertical-align: top;
+  position: relative;
+  top: -4px;
+  font-size: 12px;
+}
+
+/* UML */
+
+.htmledit_views .sequence-diagram,
+.htmledit_views .flow-chart {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.htmledit_views .sequence-diagram,
+.htmledit_views .flow-chart {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 14px !important;
+}
+
+.htmledit_views .sequence-diagram [fill='#000'],
+.htmledit_views .flow-chart [fill='#000'],
+.htmledit_views .sequence-diagram [fill='#000000'],
+.htmledit_views .flow-chart [fill='#000000'],
+.htmledit_views .sequence-diagram [fill='black'],
+.htmledit_views .flow-chart [fill='black'] {
+  fill: #4f4f4f;
+}
+
+.htmledit_views .sequence-diagram [stroke='#000000'],
+.htmledit_views .flow-chart [stroke='#000000'] {
+  stroke: #4f4f4f;
+}
+
+/* 数学公式 */
+
+.htmledit_views .MathJax_SVG_Display {
+  text-align: center;
+  margin: 24px 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #4f4f4f;
+  position: relative;
+  text-indent: 0;
+  max-width: none;
+  max-height: none;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+/* code&pre  */
+.htmledit_views pre code {
+  display: block;
+  line-height: 22px;
+  overflow-x: auto;
+  padding: 0;
+  /* color: #000000; */
+  white-space: pre;
+  word-wrap: normal;
+  /* background-color: #f6f8fa; */
+  border-radius: 4px;
+  padding: 8px;
+  tab-size: 4;
+}
+.htmledit_views pre code:not(.hljs) {
+  background-color: #f3f4f5;
+}
+.htmledit_views pre code,
+.htmledit_views pre code div,
+.htmledit_views pre code span {
+  font-size: 14px;
+  font-family: 'Source Code Pro', 'DejaVu Sans Mono', 'Ubuntu Mono',
+    'Anonymous Pro', 'Droid Sans Mono', Menlo, Monaco, Consolas, Inconsolata,
+    Courier, monospace, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+.htmledit_views pre.prettyprint,
+.htmledit_views .prettyprint {
+  margin: 0 0 24px 0;
+  padding: 8px 16px 4px 56px;
+  background-color: #f6f8fa;
+  border: none;
+}
+
+.htmledit_views .prettyprint .pre-numbering {
+  position: absolute;
+  width: 48px;
+  background-color: #eef0f4;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px 0 8px;
+  list-style: none;
+  text-align: right;
+}
+
+.htmledit_views .pre-numbering li {
+  padding: 0 8px;
+  list-style: none;
+  margin: 0;
+}
+
+.htmledit_views dl dd {
+  margin: 0 0 8px 40px;
+}
+
+/*kbd*/
+.htmledit_views kbd {
+  padding: 2px 8px;
+  border: 1px solid rgba(63, 63, 63, 0.25);
+  box-shadow: 0 1px 0 rgba(63, 63, 63, 0.25);
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 2px;
+  white-space: nowrap;
+}
+
+/*高亮代码调整字符*/
+.htmledit_views .dp-highlighter {
+  font-size: 12px;
+  text-align: left;
+  margin: 0 0 24px 0;
+}
+/* 行号 */
+.htmledit_views code.hljs {
+}
+
+.htmledit_views code ol {
+  margin: 0;
+  overflow: hidden;
+}
+
+.htmledit_views code ol li {
+  list-style-type: none;
+  margin-left: 0;
+  margin-top: 0;
+  height: 22px;
+}
+.htmledit_views code ol li div.hljs-ln-code {
+  margin-left: 8px;
+}
+.htmledit_views code ol li div.hljs-ln-numbers,
+.htmledit_views code ol li div.hljs-ln-code {
+  float: left;
+  height: 22px;
+  font-family: 'Source Code Pro', 'DejaVu Sans Mono', 'Ubuntu Mono',
+    'Anonymous Pro', 'Droid Sans Mono', Menlo, Monaco, Consolas, Inconsolata,
+    Courier, monospace, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+.htmledit_views code ol li div.hljs-ln-numbers .hljs-ln-line,
+.htmledit_views code ol li div.hljs-ln-code .hljs-ln-line {
+  /* display: inline; */
+}
+.htmledit_views code ol li div.hljs-ln-numbers {
+  width: 24px;
+  border-right: 1px solid #c5c5c5;
+}
+.htmledit_views code ol li div.hljs-ln-numbers .hljs-ln-line {
+  word-wrap: normal;
+}
+.htmledit_views code ol.hundred li div.hljs-ln-numbers {
+  width: 30px;
+}
+.htmledit_views code ol.thousand li div.hljs-ln-numbers {
+  width: 36px;
+}
+.htmledit_views .csdn-data-video {
+  width: 200px;
+}
+
+.htmledit_views .csdn-data-video img {
+  margin: 0;
+  display: block;
+  width: 200px;
+  height: 112px;
+}
+
+.htmledit_views .csdn-data-video p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* 兼容微信文章代码片样式 */
+.htmledit_views pre[data-from='code-for-outside'] {
+  overflow: hidden;
+}
+.htmledit_views pre[data-from='code-for-outside'] code {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.htmledit_views pre[data-from='code-for-outside'] code * {
+  overflow: visible;
+  overflow-wrap: break-word;
+}
+.htmledit_views pre[data-from='code-for-outside'] p code {
+  padding: 0;
+}
+/* 文章字体 */
+.htmledit_views {
+  font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, WenQuanYi Micro Hei, sans-serif, SimHei, SimSun;
+}
+
+/*contents.css*/
+.cke_editable {
+  margin: 24px;
+  word-wrap: break-word;
+}
+.htmledit_views img.right {
+  border: 1px solid #ccc;
+  float: right;
+  margin-left: 15px;
+  padding: 5px;
+}
+.htmledit_views img.left {
+  border: 1px solid #ccc;
+  float: left;
+  margin-right: 15px;
+  padding: 5px;
+}
+.htmledit_views .marker {
+  background-color: Yellow;
+}
+.htmledit_views span[lang] {
+  font-style: italic;
+}
+.htmledit_views figure {
+  text-align: center;
+  margin: 0 24px;
+  display: inline-block;
+}
+.htmledit_views figure > figcaption {
+  text-align: center;
+  margin: 8px;
+  color: #999;
+  font-size: 14px;
+  display: block; /* For IE8 */
+}
+.htmledit_views a > img {
+  padding: 1px;
+  margin: 1px;
+  border: none;
+  outline: 1px solid #0782c1;
+}
+
+/* Widget Styles */
+.htmledit_views .code-featured {
+  border: 5px solid red;
+}
+.htmledit_views .math-featured {
+  padding: 20px;
+  box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+  background-color: rgba(255, 0, 0, 0.05);
+  margin: 10px;
+}
+.htmledit_views .image-clean {
+  border: 0;
+  background: none;
+  padding: 0;
+}
+.htmledit_views .image-clean > figcaption {
+  font-size: 0.9em;
+  text-align: right;
+}
+.htmledit_views .image-grayscale {
+  background-color: white;
+  color: #666;
+}
+.htmledit_views .image-grayscale img,
+.htmledit_views img.image-grayscale {
+  filter: grayscale(100%);
+}
+.htmledit_views .embed-240p {
+  max-width: 426px;
+  max-height: 240px;
+  margin: 0 auto;
+}
+.htmledit_views .embed-360p {
+  max-width: 640px;
+  max-height: 360px;
+  margin: 0 auto;
+}
+.htmledit_views .embed-480p {
+  max-width: 854px;
+  max-height: 480px;
+  margin: 0 auto;
+}
+.htmledit_views .embed-720p {
+  max-width: 1280px;
+  max-height: 720px;
+  margin: 0 auto;
+}
+.htmledit_views .embed-1080p {
+  max-width: 1920px;
+  max-height: 1080px;
+  margin: 0 auto;
+}
+
+/* 文章正文 */
+.htmledit_views p {
+  font-size: 16px;
+  color: #4d4d4d;
+  font-weight: normal;
+  line-height: 32px !important;
+  margin: 0 0 16px 0;
+  overflow-x: auto;
+  word-break: break-word;
+}
+p[align='center'] {
+  text-align: center;
+}
+
+/* 地址斜体 */
+.htmledit_views i,
+.htmledit_views cite,
+.htmledit_views em,
+.htmledit_views var,
+.htmledit_views address,
+.htmledit_views dfn {
+  font-style: italic;
+}
+.htmledit_views img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 正文加粗 */
+.htmledit_views strong {
+  font-weight: bold;
+}
+.htmledit_views strong span {
+  font-weight: bold;
+}
+.htmledit_views * {
+  box-sizing: border-box;
+}
+.htmledit_views h1,
+.htmledit_views h2,
+.htmledit_views h3,
+.htmledit_views h4,
+.htmledit_views h5,
+.htmledit_views h6 {
+  color: #4f4f4f;
+  margin: 8px 0 16px 0;
+  font-weight: bold;
+}
+
+/*有序、无序列表*/
+.htmledit_views ul,
+.htmledit_views ol {
+  margin: 0 0 24px 0;
+  padding: 0;
+  font-size: 16px;
+}
+.htmledit_views ul ol {
+  margin: 0 0 24px 32px;
+}
+.htmledit_views ul li {
+  list-style-type: disc;
+  margin: 8px 0 0 32px;
+}
+.htmledit_views ol li {
+  list-style-type: decimal;
+  margin-left: 40px;
+  margin-top: 8px;
+}
+
+/* 图片 */
+.htmledit_views img {
+  /* max-width: 100%; */
+}
+
+/* 标题 */
+.htmledit_views h1 {
+  font-size: 28px; /*font-size: 36px*/
+  line-height: 36px; /*font-size: 64px*/
+}
+.htmledit_views h2 {
+  font-size: 24px; /*font-size: 32px*/
+  line-height: 32px; /*font-size: 56px*/
+}
+.htmledit_views h3 {
+  font-size: 22px; /*font-size: 30px*/
+  line-height: 30px; /*font-size: 50px*/
+}
+.htmledit_views h4 {
+  font-size: 20px; /*font-size: 24px*/
+  line-height: 28px; /*font-size: 42px*/
+}
+.htmledit_views h5 {
+  font-size: 18px; /*font-size: 20px*/
+  line-height: 26px; /*font-size: 36px*/
+}
+.htmledit_views h6 {
+  font-size: 16px; /*font-size: 20px*/
+  line-height: 24px; /*font-size: 28px*/
+}
+
+/* 引用 */
+.htmledit_views blockquote {
+  display: block;
+  padding: 16px 16px 0 16px;
+  margin: 0 0 24px 0;
+  border-left: 8px solid #dddfe4;
+  background: #eef0f4;
+  overflow: auto;
+  overflow-scrolling: touch;
+  word-wrap: normal;
+  word-break: normal;
+}
+.htmledit_views blockquote ul,
+.htmledit_views blockquote ol {
+  margin-bottom: 16px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+.htmledit_views blockquote ul li {
+  margin-bottom: 0;
+}
+.htmledit_views blockquote ol li {
+  margin-bottom: 0;
+}
+
+/* 引用 - 文字*/
+.htmledit_views blockquote p {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: normal;
+  margin-bottom: 16px;
+  color: #4f4f4f;
+}
+
+/* 分割线 */
+.htmledit_views hr {
+  margin: 24px 0;
+  border: none;
+  border-bottom: solid #ccc 1px;
+}
+
+/*表格*/
+.htmledit_views tbody {
+  border: 0;
+}
+.htmledit_views table tr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  background-color: white;
+}
+.htmledit_views table {
+  border-collapse: collapse;
+  display: table;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.htmledit_views tbody {
+  border: 0;
+}
+.htmledit_views table tr:nth-child(2n) {
+  background-color: #f7f7f7;
+}
+.htmledit_views table tr th,
+.htmledit_views table tr td {
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  padding: 8px;
+  text-align: left;
+}
+.htmledit_views table tr th p {
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+}
+.htmledit_views table tr td p {
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.htmledit_views table tr th code,
+.htmledit_views table tr td code {
+  white-space: normal;
+  word-break: break-word;
+}
+.htmledit_views table tr th {
+  font-weight: bold;
+  background-color: #eff3f5;
+}
+
+/*目录列表*/
+.htmledit_views dl {
+  margin: 24px;
+}
+.htmledit_views dl dt {
+  margin: 8px;
+  font-weight: bold;
+}
+.htmledit_views dl dt dd {
+  margin: 8px;
+}
+
+/*.htmledit_views dd p{
+                margin: 8px;
+            }*/
+
+/*abbr*/
+.htmledit_views abbr[title],
+.htmledit_views abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999;
+}
+
+/*首字母缩略词*/
+.htmledit_views .initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+/*首字母缩略词*/
+.htmledit_views pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0 0 24px 0;
+  /* background-color: #f0f0f0; */
+  overflow-x: auto;
+  padding: 8px;
+}
+.marker {
+  background-color: Yellow;
+}
+
+/*数学公式*/
+htmledit_views img.mathcode {
+  margin: 0 8px;
+}
+/*代码块字体*/
+/* .htmledit_views code, */
+.htmledit_views kbd,
+.htmledit_views pre,
+.htmledit_views samp {
+  font-family: Consolas, Inconsolata, Courier, monospace;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000;
+}
+.htmledit_views code {
+  /* color: #c7254e; */
+  /* background-color: #f9f2f4; */
+  border-radius: 4px;
+}
+
+/*超链接*/
+.htmledit_views a {
+  color: #4ea1db;
+  text-decoration: none;
+}
+.htmledit_views a:hover,
+.htmledit_views a:focus {
+  color: #ca0c16;
+  /*text-decoration: underline;*/
+}
+.htmledit_views a:visited {
+  color: #6795b5;
+}
+.htmledit_views .hot-keyword:visited {
+  color: #3399ea;
+}
+/*脚注*/
+.htmledit_views .footnote {
+  vertical-align: top;
+  position: relative;
+  top: -4px;
+  font-size: 12px;
+}
+
+/* UML */
+.htmledit_views .sequence-diagram,
+.htmledit_views .flow-chart {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.htmledit_views .sequence-diagram,
+.htmledit_views .flow-chart {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 14px !important;
+}
+.htmledit_views .sequence-diagram [fill='#000'],
+.htmledit_views .flow-chart [fill='#000'],
+.htmledit_views .sequence-diagram [fill='#000000'],
+.htmledit_views .flow-chart [fill='#000000'],
+.htmledit_views .sequence-diagram [fill='black'],
+.htmledit_views .flow-chart [fill='black'] {
+  fill: #4f4f4f;
+}
+.htmledit_views .sequence-diagram [stroke='#000000'],
+.htmledit_views .flow-chart [stroke='#000000'] {
+  stroke: #4f4f4f;
+}
+
+/* 数学公式 */
+.htmledit_views .MathJax_SVG_Display {
+  text-align: center;
+  margin: 24px 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #4f4f4f;
+  position: relative;
+  text-indent: 0;
+  max-width: none;
+  max-height: none;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+/* code&pre  */
+.htmledit_views pre code {
+  display: block;
+  line-height: 22px;
+  overflow-x: auto;
+  padding: 0;
+  /* color: #000000; */
+  white-space: pre;
+  word-wrap: normal;
+  /* background-color: #f6f8fa; */
+  border-radius: 4px;
+  padding: 8px;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+.htmledit_views pre code code.hljs {
+  padding: 0px;
+}
+.htmledit_views pre code:not(.hljs) {
+  background-color: #f3f4f5;
+}
+.htmledit_views pre code,
+.htmledit_views pre code div,
+.htmledit_views pre code span {
+  font-size: 14px;
+  font-family: 'Source Code Pro', 'DejaVu Sans Mono', 'Ubuntu Mono',
+    'Anonymous Pro', 'Droid Sans Mono', Menlo, Monaco, Consolas, Inconsolata,
+    Courier, monospace, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+.htmledit_views pre.prettyprint,
+.htmledit_views .prettyprint {
+  margin: 0 0 24px 0;
+  padding: 8px 16px 4px 56px;
+  background-color: #f6f8fa;
+  border: none;
+}
+.htmledit_views .prettyprint .pre-numbering {
+  position: absolute;
+  width: 48px;
+  background-color: #eef0f4;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px 0 8px;
+  list-style: none;
+  text-align: right;
+}
+.htmledit_views .pre-numbering li {
+  padding: 0 8px;
+  list-style: none;
+  margin: 0;
+}
+.htmledit_views dl dd {
+  margin: 0 0 8px 40px;
+}
+
+/*kbd*/
+.htmledit_views kbd {
+  padding: 2px 8px;
+  border: 1px solid rgba(63, 63, 63, 0.25);
+  box-shadow: 0 1px 0 rgba(63, 63, 63, 0.25);
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 2px;
+  white-space: nowrap;
+}
+
+/*高亮代码调整字符*/
+.htmledit_views .dp-highlighter {
+  font-size: 12px;
+  text-align: left;
+  margin: 0 0 24px 0;
+}
+/* 行号 */
+.htmledit_views code.hljs {
+}
+.htmledit_views code ol {
+  margin: 0;
+  overflow: hidden;
+}
+.htmledit_views code ol li {
+  list-style-type: none;
+  margin-left: 0;
+  margin-top: 0;
+  height: 22px;
+}
+.htmledit_views code ol li div.hljs-ln-code {
+  margin-left: 8px;
+}
+.htmledit_views code ol li div.hljs-ln-numbers,
+.htmledit_views code ol li div.hljs-ln-code {
+  float: left;
+  height: 22px;
+  font-family: 'Source Code Pro', 'DejaVu Sans Mono', 'Ubuntu Mono',
+    'Anonymous Pro', 'Droid Sans Mono', Menlo, Monaco, Consolas, Inconsolata,
+    Courier, monospace, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+.htmledit_views code ol li div.hljs-ln-numbers .hljs-ln-line,
+.htmledit_views code ol li div.hljs-ln-code .hljs-ln-line {
+  /* display: inline; */
+}
+.htmledit_views code ol li div.hljs-ln-numbers {
+  width: 24px;
+  border-right: 1px solid #c5c5c5;
+}
+.htmledit_views code ol li div.hljs-ln-numbers .hljs-ln-line {
+  word-wrap: normal;
+}
+.htmledit_views code ol.hundred li div.hljs-ln-numbers {
+  width: 30px;
+}
+.htmledit_views code ol.thousand li div.hljs-ln-numbers {
+  width: 36px;
+}
+.htmledit_views .csdn-data-video {
+  width: 200px;
+}
+.htmledit_views .csdn-data-video img {
+  margin: 0;
+  display: block;
+  width: 200px;
+  height: 112px;
+}
+.htmledit_views .csdn-data-video p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* 兼容微信文章代码片样式 */
+.htmledit_views pre[data-from='code-for-outside'] {
+  overflow: hidden;
+}
+.htmledit_views pre[data-from='code-for-outside'] code {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.htmledit_views pre[data-from='code-for-outside'] code * {
+  overflow: visible;
+  overflow-wrap: break-word;
+}
+.htmledit_views pre[data-from='code-for-outside'] p code {
+  padding: 0;
+}
+
+/* chart css */
+div.chartjs canvas,
+div.chartjs div.chartjs-legend {
+  display: inline-block;
+}
+div.chartjs div.chartjs-legend span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
+div.chartjs div.chartjs-legend ul {
+  list-style-type: none;
+}
+div.chartjs div.chartjs-legend li {
+  margin-top: 10px;
+}
+
+/*代码片*/
+.markdown_views pre > code.hljs {
+  background-color: #f6f8fa;
+}
+
+/* 因评论代码块也更新为  highlightjs https://highlightjs.readthedocs.io/en/latest/api.html*/
+/* 为防止md 编辑的代码块与评论的代码块颜色冲突覆盖 ，故加了上级 class markdown_views 与 颜色属性的  important*/
+.markdown_views .hljs {
+  display: block;
+  padding: 8px;
+  color: #000 !important;
+}
+.markdown_views .hljs-comment,
+.markdown_views .hljs-template_comment,
+.markdown_views .hljs-javadoc,
+.markdown_views .hljs-comment * {
+  color: #800 !important;
+}
+.markdown_views .hljs-keyword,
+.markdown_views .method,
+.markdown_views .hljs-list .hljs-title,
+.markdown_views .setting .hljs-value,
+.markdown_views .hljs-winutils,
+.markdown_views .http .hljs-title,
+.markdown_views .hljs-request,
+.markdown_views .hljs-status {
+  color: #4f4f4f !important;
+}
+.markdown_views .hljs-keyword,
+.markdown_views .method,
+.markdown_views .hljs-list .hljs-title,
+.markdown_views .clojure .hljs-built_in,
+.markdown_views .nginx .hljs-title,
+.markdown_views .hljs-tag .hljs-title,
+.markdown_views .setting .hljs-value,
+.markdown_views .hljs-winutils,
+.markdown_views .tex .hljs-command,
+.markdown_views .http .hljs-title,
+.markdown_views .hljs-request,
+.markdown_views .hljs-status {
+  color: #008 !important;
+}
+.markdown_views .hljs-envvar {
+  color: #660 !important;
+}
+.markdown_views .hljs-cdata,
+.markdown_views .hljs-filter .hljs-argument,
+.markdown_views .hljs-attr_selector,
+.markdown_views .hljs-date,
+.markdown_views .hljs-regexp {
+  color: #080 !important;
+}
+.markdown_views .hljs-sub .hljs-identifier,
+.markdown_views .hljs-pi,
+.markdown_views .hljs-tag,
+.markdown_views .hljs-tag .hljs-keyword,
+.markdown_views .hljs-decorator,
+.markdown_views .ini .hljs-title,
+.markdown_views .hljs-shebang,
+.markdown_views .hljs-prompt,
+.markdown_views .hljs-hexcolor,
+.markdown_views .css .hljs-value .hljs-number,
+.markdown_views .hljs-literal,
+.markdown_views .hljs-symbol,
+.markdown_views .hljs-number,
+.markdown_views .css .hljs-function,
+.markdown_views .clojure .hljs-attribute {
+  color: #066 !important;
+}
+.markdown_views .hljs-class .hljs-title,
+.markdown_views .haskell .hljs-type,
+.markdown_views .hljs-javadoctag,
+.markdown_views .hljs-yardoctag,
+.markdown_views .hljs-phpdoc,
+.markdown_views .hljs-typename,
+.markdown_views .hljs-tag .hljs-attribute,
+.markdown_views .hljs-doctype,
+.markdown_views .hljs-class .hljs-id,
+.markdown_views .hljs-built_in,
+.markdown_views .setting,
+.markdown_views .hljs-params,
+.markdown_views .hljs-variable,
+.markdown_views .clojure .hljs-title {
+  color: #4f4f4f !important;
+}
+.markdown_views .css .hljs-tag,
+.markdown_views .hljs-rules .hljs-property,
+.markdown_views .hljs-pseudo {
+  color: #000 !important;
+}
+.markdown_views .css .hljs-class,
+.markdown_views .css .hljs-id {
+  color: #9b703f !important;
+}
+.markdown_views .hljs-value .hljs-important {
+  color: #f70 !important;
+  font-weight: bold;
+}
+.markdown_views .hljs-rules .hljs-keyword {
+  color: #c5af75 !important;
+}
+.markdown_views .hljs-annotation,
+.markdown_views .apache .hljs-sqbracket,
+.markdown_views .nginx .hljs-built_in {
+  color: #9b859d !important;
+}
+.markdown_views .tex .hljs-formula {
+  background-color: #eee !important;
+  font-style: italic;
+}
+.markdown_views .diff .hljs-header,
+.markdown_views .hljs-chunk {
+  color: #808080 !important;
+  font-weight: bold;
+}
+.markdown_views .diff .hljs-change {
+  background-color: #bccff9 !important;
+}
+.markdown_views .hljs-addition {
+  background-color: #baeeba !important;
+}
+.markdown_views .hljs-deletion {
+  background-color: #ffc8bd !important;
+}
+.markdown_views .hljs-comment .hljs-yardoctag {
+  font-weight: bold;
+}
+.markdown_views .hljs-string,
+.markdown_views .hljs-title,
+.markdown_views .hljs-constant,
+.markdown_views .hljs-parent,
+.markdown_views .hljs-tag .hljs-value,
+.markdown_views .hljs-rules .hljs-value,
+.markdown_views .hljs-rules .hljs-value .hljs-number,
+.markdown_views .hljs-preprocessor,
+.markdown_views .hljs-preprocessor *,
+.markdown_views .hljs-pragma,
+.markdown_views .haml .hljs-symbol,
+.markdown_views .ruby .hljs-symbol,
+.markdown_views .ruby .hljs-symbol .hljs-string,
+.markdown_views .hljs-aggregate,
+.markdown_views .hljs-template_tag,
+.markdown_views .django .hljs-variable,
+.markdown_views .smalltalk .hljs-class,
+.markdown_views .hljs-addition,
+.markdown_views .hljs-flow,
+.markdown_views .hljs-stream,
+.markdown_views .bash .hljs-variable,
+.markdown_views .apache .hljs-tag,
+.markdown_views .apache .hljs-cbracket,
+.markdown_views .tex .hljs-command,
+.markdown_views .tex .hljs-special,
+.markdown_views .erlang_repl .hljs-function_or_atom,
+.markdown_views .asciidoc .hljs-header,
+.markdown_views .markdown .hljs-header,
+.markdown_views .coffeescript .hljs-attribute {
+  color: #090 !important;
+}
+.markdown_views .hljs,
+.markdown_views .hljs-subst,
+.markdown_views .hljs-tag .hljs-title,
+.markdown_views .lisp .hljs-title,
+.markdown_views .clojure .hljs-built_in,
+.markdown_views .nginx .hljs-title {
+  color: #4f4f4f !important;
+}
+.markdown_views .hljs-string,
+.markdown_views .hljs-title,
+.markdown_views .hljs-constant,
+.markdown_views .hljs-parent,
+.markdown_views .hljs-tag .hljs-value,
+.markdown_views .hljs-rules .hljs-value,
+.markdown_views .hljs-rules .hljs-value .hljs-number,
+.markdown_views .hljs-preprocessor,
+.markdown_views .hljs-pragma,
+.markdown_views .haml .hljs-symbol,
+.markdown_views .ruby .hljs-symbol,
+.markdown_views .ruby .hljs-symbol .hljs-string,
+.markdown_views .hljs-aggregate,
+.markdown_views .hljs-template_tag,
+.markdown_views .django .hljs-variable,
+.markdown_views .smalltalk .hljs-class,
+.markdown_views .hljs-addition,
+.markdown_views .hljs-flow,
+.markdown_views .hljs-stream,
+.markdown_views .bash .hljs-variable,
+.markdown_views .apache .hljs-tag,
+.markdown_views .apache .hljs-cbracket,
+.markdown_views .tex .hljs-command,
+.markdown_views .tex .hljs-special,
+.markdown_views .erlang_repl .hljs-function_or_atom,
+.markdown_views .asciidoc .hljs-header,
+.markdown_views .markdown .hljs-header,
+.markdown_views .coffeescript .hljs-attribute {
+  color: #090 !important;
+}
+
+/*代码块字体*/
+.markdown_views code,
+.markdown_views kbd,
+.markdown_views pre,
+.markdown_views samp {
+  font-family: Consolas, Inconsolata, Courier, monospace;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+}
+.markdown_views code {
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 2px;
+  padding: 4px 2px 0px 2px;
+}
+
+/*超链接*/
+.markdown_views a {
+  color: #4ea1db;
+  text-decoration: none;
+}
+.markdown_views a:hover,
+.markdown_views a:focus {
+  color: #ca0c16;
+  /*text-decoration: underline;*/
+}
+.markdown_views a:visited {
+  color: #6795b5;
+}
+
+/*脚注*/
+.markdown_views .footnote {
+  vertical-align: top;
+  position: relative;
+  top: -4px;
+  font-size: 12px;
+}
+.markdown_views .footnotes ol li {
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0 0 8px 24px;
+}
+
+/* UML */
+.markdown_views .sequence-diagram,
+.markdown_views .flow-chart {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.markdown_views .sequence-diagram,
+.markdown_views .flow-chart {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 14px !important;
+}
+.markdown_views .sequence-diagram [fill='#000'],
+.markdown_views .flow-chart [fill='#000'],
+.markdown_views .sequence-diagram [fill='#000000'],
+.markdown_views .flow-chart [fill='#000000'],
+.markdown_views .sequence-diagram [fill='black'],
+.markdown_views .flow-chart [fill='black'] {
+  fill: #4f4f4f;
+}
+.markdown_views .sequence-diagram [stroke='#000000'],
+.markdown_views .flow-chart [stroke='#000000'] {
+  stroke: #4f4f4f;
+}
+
+/* 数学公式 */
+.markdown_views .MathJax_SVG_Display {
+  text-align: center;
+  margin: 24px 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #4f4f4f;
+  position: relative;
+  text-indent: 0;
+  max-width: none;
+  max-height: none;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+/* toc */
+.markdown_views .toc {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 24px 0;
+  padding: 0;
+}
+.markdown_views .toc ul {
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.markdown_views .toc ul li {
+  list-style-type: none;
+  margin: 8px 0 0 24px;
+}
+
+/* code&pre  */
+.markdown_views pre code {
+  display: block;
+  font-size: 14px;
+  line-height: 22px;
+  overflow-x: auto;
+  padding: 0 !important;
+  color: #000000;
+  white-space: pre;
+  word-wrap: normal;
+  background-color: #f6f8fa;
+  border-radius: 4px;
+}
+/* Safari */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .markdown_views pre code {
+    min-width: 94%;
+  }
+}
+.markdown_views pre.prettyprint,
+.markdown_views .prettyprint {
+  margin: 0 0 24px 0;
+  padding: 8px 16px 6px 56px;
+  background-color: #f6f8fa;
+  border: none;
+}
+.prettyprint {
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.markdown_views .prettyprint .pre-numbering {
+  position: absolute;
+  width: 48px;
+  background-color: #eef0f4;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px 0 8px;
+  list-style: none;
+  text-align: right;
+}
+.markdown_views .pre-numbering li {
+  padding: 0 8px;
+  list-style: none;
+  margin: 0;
+}
+.markdown_views dl dd {
+  margin: 0 0 8px 40px;
+}
+
+/*kbd*/
+.markdown_views kbd {
+  padding: 2px 8px;
+  border: 1px solid rgba(63, 63, 63, 0.25);
+  box-shadow: 0 1px 0 rgba(63, 63, 63, 0.25);
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 2px;
+  white-space: nowrap;
+}
+/*## prism-atom-one-dark ##*/
+.markdown_views.prism-atom-one-dark pre code {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+/*## prism-atom-one-dark ##*/
+.markdown_views.prism-atom-one-dark pre code.hljs * {
+  color: #abb2bf;
+}
+.markdown_views.prism-atom-one-dark .prettyprint,
+.markdown_views.prism-atom-one-dark pre.prettyprint {
+  background-color: #282c34;
+}
+.markdown_views.prism-atom-one-dark .prettyprint .pre-numbering {
+  background-color: #282c34;
+}
+.markdown_views.prism-atom-one-dark .pre-numbering li {
+  color: #abb2bf !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-atom-one-light ##*/
+.markdown_views.prism-atom-one-light pre code {
+  background-color: #fafafa;
+}
+.markdown_views.prism-atom-one-light .prettyprint,
+.markdown_views.prism-atom-one-light pre.prettyprint {
+  background-color: #fafafa;
+}
+.markdown_views.prism-atom-one-light .prettyprint .pre-numbering {
+  background-color: #fafafa;
+}
+.markdown_views.prism-atom-one-light .pre-numbering li {
+  color: #383a42 !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-tomorrow-night ##*/
+.markdown_views.prism-tomorrow-night pre code {
+  background-color: #1d1f21;
+  color: #c5c8c6;
+}
+.markdown_views.prism-tomorrow-night pre code.hljs * {
+  color: #c5c8c6;
+}
+.markdown_views.prism-tomorrow-night .prettyprint,
+.markdown_views.prism-tomorrow-night pre.prettyprint {
+  background-color: #1d1f21;
+}
+.markdown_views.prism-tomorrow-night .prettyprint .pre-numbering {
+  background-color: #1d1f21;
+}
+.markdown_views.prism-tomorrow-night .pre-numbering li {
+  color: #c5c8c6 !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-dracula ##*/
+.markdown_views.prism-dracula pre code {
+  background-color: #282a36;
+  color: #f8f8f2;
+}
+.markdown_views.prism-dracula pre code.hljs * {
+  color: #f8f8f2;
+}
+.markdown_views.prism-dracula .prettyprint,
+.markdown_views.prism-dracula pre.prettyprint {
+  background-color: #282a36;
+}
+.markdown_views.prism-dracula .prettyprint .pre-numbering {
+  background-color: #282a36;
+}
+.markdown_views.prism-dracula .pre-numbering li {
+  color: #f8f8f2 !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-github-gist ##*/
+.markdown_views.prism-github-gist pre code {
+  background-color: #f3f4f5;
+}
+.markdown_views.prism-github-gist .prettyprint,
+.markdown_views.prism-github-gist pre.prettyprint {
+  background-color: #f3f4f5;
+}
+.markdown_views.prism-github-gist .prettyprint .pre-numbering {
+  background-color: #f3f4f5;
+}
+.markdown_views.prism-github-gist .pre-numbering li {
+  color: #5e6687 !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-kimbie-light ##*/
+.markdown_views.prism-kimbie-light pre code {
+  background-color: #fbebd4;
+}
+.markdown_views.prism-kimbie-light .prettyprint,
+.markdown_views.prism-kimbie-light pre.prettyprint {
+  background-color: #fbebd4;
+}
+.markdown_views.prism-kimbie-light .prettyprint .pre-numbering {
+  background-color: #fbebd4;
+}
+.markdown_views.prism-kimbie-light .pre-numbering li {
+  color: #84613d !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-tomorrow-night-eighties ##*/
+.markdown_views.prism-tomorrow-night-eighties pre code {
+  background-color: #2d2d2d;
+  color: #ccc;
+}
+.markdown_views.prism-tomorrow-night-eighties pre code.hljs * {
+  color: #ccc;
+}
+.markdown_views.prism-tomorrow-night-eighties .prettyprint,
+.markdown_views.prism-tomorrow-night-eighties pre.prettyprint {
+  background-color: #2d2d2d;
+}
+.markdown_views.prism-tomorrow-night-eighties .prettyprint .pre-numbering {
+  background-color: #2d2d2d;
+}
+.markdown_views.prism-tomorrow-night-eighties .pre-numbering li {
+  color: #cccccc !important;
+  border-right: 1px solid #c5c5c5;
+}
+
+/*## prism-atelier-sulphurpool-light ##*/
+.markdown_views.prism-atelier-sulphurpool-light pre code {
+  background-color: #f5f7ff;
+}
+.markdown_views.prism-atelier-sulphurpool-light .prettyprint,
+.markdown_views.prism-atelier-sulphurpool-light pre.prettyprint {
+  background-color: #f5f7ff;
+}
+.markdown_views.prism-atelier-sulphurpool-light .prettyprint .pre-numbering {
+  background-color: #f5f7ff;
+}
+.markdown_views.prism-atelier-sulphurpool-light .pre-numbering li {
+  color: #5e6687 !important;
+  border-right: 1px solid #c5c5c5;
+}
+.markdown_views .prism .token.comment {
+  font-family: 'Source Code Pro', 'DejaVu Sans Mono', 'Ubuntu Mono',
+    'Anonymous Pro', 'Droid Sans Mono', 'Menlo', 'Monaco', 'Consolas',
+    'Inconsolata', 'Courier', 'PingFang SC', 'Microsoft YaHei', 'sans-serif' !important;
+}
+
+.markdown_views pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+.markdown_views code.hljs {
+  padding: 3px 5px;
+}
+.markdown_views .hljs {
+  background: #fff;
+  color: #000;
+}
+.markdown_views .hljs-comment,
+.markdown_views .hljs-quote {
+  color: #800;
+}
+.markdown_views .hljs-keyword,
+.markdown_views .hljs-name,
+.markdown_views .hljs-section,
+.markdown_views .hljs-selector-tag,
+.markdown_views .hljs-title {
+  color: #008;
+}
+.markdown_views .hljs-template-variable,
+.markdown_views .hljs-variable {
+  color: #660;
+}
+.markdown_views .hljs-regexp,
+.markdown_views .hljs-selector-attr,
+.markdown_views .hljs-selector-pseudo,
+.markdown_views .hljs-string {
+  color: #080;
+}
+.markdown_views .hljs-bullet,
+.markdown_views .hljs-link,
+.markdown_views .hljs-literal,
+.markdown_views .hljs-meta,
+.markdown_views .hljs-number,
+.markdown_views .hljs-symbol {
+  color: #066;
+}
+.markdown_views .hljs-attr,
+.markdown_views .hljs-built_in,
+.markdown_views .hljs-doctag,
+.markdown_views .hljs-params,
+.markdown_views .hljs-title,
+.markdown_views .hljs-type {
+  color: #606;
+}
+.markdown_views .hljs-attribute,
+.markdown_views .hljs-subst {
+  color: #000;
+}
+.markdown_views .hljs-formula {
+  background-color: #eee;
+  font-style: italic;
+}
+.markdown_views .hljs-selector-class,
+.markdown_views .hljs-selector-id {
+  color: #9b703f;
+}
+.markdown_views .hljs-addition {
+  background-color: #baeeba;
+}
+.markdown_views .hljs-deletion {
+  background-color: #ffc8bd;
+}
+.markdown_views .hljs-doctag,
+.markdown_views .hljs-strong {
+  font-weight: 700;
+}
+.markdown_views .hljs-emphasis {
+  font-style: italic;
+}

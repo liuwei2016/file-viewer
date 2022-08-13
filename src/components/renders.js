@@ -89,12 +89,13 @@ const handlers = [
       "editorconfig",
       "browserslistrc",
       "project",
+      "gitignore",
       "cfg",
       "sh",
       "yml"
     ],
-    handler: async (buffer, target) => {
-      return renderText(buffer, target);
+    handler: async (buffer, target, type) => {
+      return renderText(buffer, target,type);
     },
   },
   // 视频预览，仅支持MP4

@@ -4,7 +4,7 @@
       <div class="container">
         <h1>
           <div>
-            智能文档或者压缩包查看
+             文档压缩包预览审查系统
             <input class="file-select" type="file" @change="handleChange" />
           </div>
         </h1>
@@ -21,7 +21,7 @@
               <el-button type="text" size="mini">
                 {{ data.size }}
               </el-button>
-              <el-button type="text" @click="previewNodeFile(data.id)" size="mini">
+              <el-button v-if="canPreview(data)" type="text" @click="previewNodeFile(data.id)" size="mini">
                 预览
               </el-button>
             </span>
@@ -44,8 +44,11 @@
 import { getExtend, readBuffer, render, isCanDealPack, getFileSize, getFileType } from "@/components/util";
 import { parse } from "qs";
 import { getPackageInfo } from "./package";
-window._fileInfo = {}
+import renders from './renders';
 
+window._fileInfo = {}
+console.log(render,Object.keys(renders))
+const acceptTypes = Object.keys(renders)
 function objToTree(objData) {
   let arr = []
   let node = 0;
@@ -86,6 +89,7 @@ export default {
   },
   data() {
     return {
+      acceptTypes:acceptTypes,
       treeData: [],
       defaultProps: {
         children: 'children',
@@ -115,6 +119,11 @@ export default {
     }
   },
   methods: {
+    canPreview(data){
+      console.log(data.name)
+     let type = data.name.split(".").pop()
+     return  acceptTypes.includes(type)
+    },
     // 根据id 获取文件内容
     previewNodeFile(id) {
       console.log(id)
