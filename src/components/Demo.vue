@@ -14,7 +14,7 @@
     <div class="container flex">
 
       <div class="box1 box">
-        <el-tree :default-expanded-keys="[1]" node-key="id" :data="treeData" :props="defaultProps">
+        <el-tree :default-expanded-keys="[2]" node-key="id" :data="treeData" :props="defaultProps">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }} _ {{ data.id }}</span>
             <span v-if="data.size">
@@ -52,7 +52,7 @@ function objToTree(objData) {
   let id = 0;
   function objToArray(obj, arr) {
     Object.keys(obj).forEach((v, i) => {
-      arr.push({ name: v, children: [], id: id++ })
+      arr.push({ name: v, children: [], id: ++id })
       if (Object.keys(obj[v]).length !== 0) {
         objToArray(obj[v], arr[i].children)
       } else {
@@ -115,6 +115,7 @@ export default {
     }
   },
   methods: {
+    // 根据id 获取文件内容
     previewNodeFile(id) {
       console.log(id)
       let file = window._fileInfo[id]
@@ -122,9 +123,6 @@ export default {
         this.previewFile(file)
       }
     },
-    // handleNodeClick(data) {
-    //   console.log(data);
-    // },
     // 获取压缩包信息
     async getPackageInfo(file) {
       let obj = null;
@@ -176,7 +174,8 @@ export default {
       // 取得文件名
       const { name } = file;
       // 取得扩展名
-      const extend = getExtend(name);
+      const extend = getExtend(name).toLowerCase();
+      console.log(name,extend)
       // 输出目的地
       const { output } = this.$refs;
       // 生成新的dom
@@ -240,11 +239,11 @@ export default {
 
 .well {
   display: block;
-  background-color: #f2f2f2;
+  background-color: #fff;
   border: 1px solid #ccc;
   margin: 5px;
   width: calc(100% - 12px);
-  height: calc(100vh - 73px);
+  height: calc(100vh - 74px);
   overflow: auto;
 }
 

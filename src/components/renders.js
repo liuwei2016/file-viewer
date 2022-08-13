@@ -86,6 +86,12 @@ const handlers = [
       "xml",
       "md",
       "log",
+      "editorconfig",
+      "browserslistrc",
+      "project",
+      "cfg",
+      "sh",
+      "yml"
     ],
     handler: async (buffer, target) => {
       return renderText(buffer, target);
