@@ -36,6 +36,10 @@
             </span>
           </span>
         </el-tree>
+        <!-- 图片提取 -->
+        <div class="image-cont">
+
+        </div>
         <!-- 文字提取 -->
         <el-button @click="extractText" size="mini" type="success">
           提取文字
@@ -52,7 +56,7 @@
 </template>
 
 <script>
-import { getExtend, readBuffer, render, isCanDealPack, getFileSize, getFileType } from "@/components/util";
+import { getExtend, readBuffer, render, isCanDealPack, getFileSize, getFileType,initPasteImage } from "@/components/util";
 import { parse } from "qs";
 import { getPackageInfo } from "./package";
 import renders from './renders';
@@ -60,9 +64,11 @@ import renders from './renders';
 window._fileInfo = {}
 console.log(render,Object.keys(renders))
 const acceptTypes = Object.keys(renders)
+
+// 将对象转成树结构
 function objToTree(objData) {
   let arr = []
-  let node = 0;
+  let count = 0;
   let id = 0;
   function objToArray(obj, arr) {
     Object.keys(obj).forEach((v, i) => {
@@ -70,19 +76,18 @@ function objToTree(objData) {
       if (Object.keys(obj[v]).length !== 0) {
         objToArray(obj[v], arr[i].children)
       } else {
-        node++
+        count++
         if (obj[v].size) {
           window._fileInfo[id] = obj[v]
           arr[i].size = Math.ceil(obj[v].size / 1024) + "kb"
         }
       }
     })
-
   }
   objToArray(objData, arr)
   return {
     dir: arr,
-    count: node
+    count: count
   }
 }
 
@@ -131,6 +136,13 @@ export default {
         }
       });
     }
+  },
+  mounted(){
+    function showImage(img,url){
+      // console.log(img,url)
+      document.querySelector(".image-cont").appendChild(img)
+    }
+    initPasteImage(showImage)
   },
   methods: {
     canPreview(data){
@@ -299,5 +311,8 @@ export default {
 .pptx-wrapper {
   max-width: 1000px;
   margin: 0 auto;
+}
+.image-cont img {
+  max-width:500px;
 }
 </style>
