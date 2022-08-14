@@ -3,7 +3,7 @@
     <el-button @click="showText = !showText">{{ showText === true ? '美化':'源文件'}}</el-button>
     <div class="text-box htmledit_views markdown_views" v-if="type === 'md' && !showText" v-html="mdToHtml(value)">
     </div>
-    <div class="text-box" v-else-if="type === 'md' && !showText" :class="dark ? 'code-dark' : 'code-default'">
+    <div class="text-box" v-else-if="!showText" :class="dark ? 'code-dark' : 'code-default'">
       <pre class="hljs" :class="'language-' + language">
         <code v-html="codeToHtml(value)"></code>
       </pre>
@@ -55,7 +55,7 @@ export default {
       let result = ""
       try {
         let hljs = highlightAuto(v)
-        this.language = hljs.language
+        this.language =   hljs.language
         result = hljs.value
       } catch (error) {
       }

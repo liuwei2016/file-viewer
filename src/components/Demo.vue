@@ -23,7 +23,6 @@
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
         </el-upload>
-
         <el-tree :default-expanded-keys="[2]" node-key="id" :data="treeData" :props="defaultProps">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }} _ {{ data.id }}</span>
@@ -37,10 +36,16 @@
             </span>
           </span>
         </el-tree>
+        <!-- 文字提取 -->
+        <el-button @click="extractText" size="mini" type="success">
+          提取文字
+        </el-button>
+        <div  v-html="text" class="text-cont">
+        </div>
       </div>
       <div class="box2 box">
         <div v-show="loading" class="well loading">正在加载中，请耐心等待...</div>
-        <div v-show="!loading" class="well" ref="output"></div>
+        <div v-show="!loading" class="well preview-cont" ref="output"></div>
       </div>
     </div>
   </div>
@@ -98,6 +103,8 @@ export default {
       acceptTypes:acceptTypes,
       treeData: [],
       fileList:[],
+      text: '', //当前文信息
+      curType:'', //当前预览的格式类型
       defaultProps: {
         children: 'children',
         label: 'name'
@@ -153,6 +160,7 @@ export default {
     },
     // 预览文件
     async previewFile(file) {
+      this.curType = getFileType(file).toLowerCase()
       try {
         const arrayBuffer = await readBuffer(file);
         this.loading = false;
@@ -176,13 +184,10 @@ export default {
         this.loading = false;
       }
     },
-    handleChange(f, fileList) {
+    handleChange(fileObj) {
       this.loading = true;
-      this.fileList =  fileList;
-      const [fileObj] = fileList;
+      this.fileList = [fileObj];
       const file =fileObj.raw
-      // console.log(file)
-      // console.log("change");
       console.log(getFileType(file), getFileSize(file))
       if (isCanDealPack(file)) {
         this.previewPackage(file)
@@ -211,6 +216,13 @@ export default {
         render(buffer, extend, child).then(resolve).catch(reject)
       );
     },
+    extractText(){
+      var text = document.querySelector(".preview-cont").innerText
+      var textArr =text.split("\n").filter((v)=>{return v.trim().length> 0});
+      // text = text.replace(/\n/g,"<br/>")
+      this.text = textArr.join("<br/>");
+
+    }
   },
 };
 </script>
