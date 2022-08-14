@@ -50,11 +50,7 @@ export function isCanDealPack(file){
   const curType = getFileType(file);
   return ["zip","rar","7z"].includes(curType)
 }
-// 展示压缩包
-function displayPackage(){
-
-}
-
+ 
 // 剪贴板内容获取 
 export async function getClipboard() {
   const clipboardItems = await navigator.clipboard.read();
