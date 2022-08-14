@@ -3,7 +3,7 @@
     <div class="banner">
       <div class="container">
         <h1>
-           文档压缩包预览审查系统
+          文档压缩包预览审查系统
         </h1>
       </div>
 
@@ -11,26 +11,22 @@
     <div class="container flex">
 
       <div class="box1 box">
-         <el-upload
-          class="upload-demo"
-          drag
-          action="/"
-          :on-change="handleChange"
-          :auto-upload="false"
-           :file-list="fileList"
-          >
+        <el-upload class="upload-demo" drag action="/" :on-change="handleChange" :auto-upload="false"
+          :file-list="fileList">
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
         </el-upload>
+        <div v-if="compressedFileNum">总共{{compressedFileNum}}文件</div>
         <el-tree :default-expanded-keys="[2]" node-key="id" :data="treeData" :props="defaultProps">
           <span class="custom-tree-node" slot-scope="{ node, data }">
-            <span>{{ node.label }} _ {{ data.id }}</span>
+            <span>{{ node.label }} _文件{{ data.id }}</span>
             <span v-if="data.size">
               <el-button type="text" size="mini">
                 {{ data.size }}
               </el-button>
-              <el-button style="color:darksalmon" v-if="canPreview(data)" type="text" @click="previewNodeFile(data.id)" size="mini">
+              <el-button style="color:darksalmon" v-if="canPreview(data)" type="text" @click="previewNodeFile(data.id)"
+                size="mini">
                 预览
               </el-button>
             </span>
@@ -44,7 +40,7 @@
         <el-button @click="extractText" size="mini" type="success">
           提取文字
         </el-button>
-        <div  v-html="text" class="text-cont">
+        <div v-html="text" class="text-cont">
         </div>
       </div>
       <div class="box2 box">
@@ -56,17 +52,17 @@
 </template>
 
 <script>
-import { getExtend, readBuffer, render, isCanDealPack, getFileSize, getFileType,initPasteImage } from "@/components/util";
+import { getExtend, readBuffer, render, isCanDealPack, getFileSize, getFileType, initPasteImage } from "@/components/util";
 import { parse } from "qs";
 import { getPackageInfo } from "./package";
 import renders from './renders';
 
-window._fileInfo = {}
-console.log(render,Object.keys(renders))
+window._fileInfo = {} //压缩包 文件对象
+// console.log(render, Object.keys(renders))
 const acceptTypes = Object.keys(renders)
 
 // 将对象转成树结构
-function objToTree(objData) {
+function objToTree(objData, everyFileCallback) {
   let arr = []
   let count = 0;
   let id = 0;
@@ -78,7 +74,10 @@ function objToTree(objData) {
       } else {
         count++
         if (obj[v].size) {
-          window._fileInfo[id] = obj[v]
+
+          if (everyFileCallback && typeof everyFileCallback === "function") {
+            everyFileCallback(obj[v], id)
+          }
           arr[i].size = Math.ceil(obj[v].size / 1024) + "kb"
         }
       }
@@ -90,9 +89,10 @@ function objToTree(objData) {
     count: count
   }
 }
-
-// var result = objToTree(objData)
-// console.log(result ,"33344")
+// 文件管理
+function manageFile(file, fileId) {
+  window._fileInfo[fileId] = file
+}
 /**
  * 支持嵌入式显示，基于postMessage支持跨域
  * 示例代码：
@@ -105,11 +105,12 @@ export default {
   },
   data() {
     return {
-      acceptTypes:acceptTypes,
+      acceptTypes: acceptTypes,
       treeData: [],
-      fileList:[],
+      fileList: [],
+      compressedFileNum: 0, //压缩包 文件数量
       text: '', //当前文信息
-      curType:'', //当前预览的格式类型
+      curType: '', //当前预览的格式类型
       defaultProps: {
         children: 'children',
         label: 'name'
@@ -137,24 +138,24 @@ export default {
       });
     }
   },
-  mounted(){
-    function showImage(img,url){
+  mounted() {
+    function showImage(img, url) {
       // console.log(img,url)
       document.querySelector(".image-cont").appendChild(img)
     }
     initPasteImage(showImage)
   },
   methods: {
-    canPreview(data){
+    canPreview(data) {
       console.log(data.name)
-     let type = data.name.split(".").pop()
-     return  acceptTypes.includes(type)
+      let type = data.name.split(".").pop()
+      return acceptTypes.includes(type)
     },
     // 根据id 获取文件内容
     previewNodeFile(id) {
       console.log(id)
       let file = window._fileInfo[id]
-      if(file){
+      if (file) {
         this.previewFile(file)
       }
     },
@@ -187,9 +188,10 @@ export default {
     async previewPackage(file) {
       try {
         let data = await this.getPackageInfo(file)
-        let info = objToTree(data)
+        let info = objToTree(data,manageFile)
         window._pack_info = info;
         this.treeData = info.dir[0].children
+        this.compressedFileNum = info.count;
       } catch (e) {
         console.error(e);
       } finally {
@@ -199,7 +201,7 @@ export default {
     handleChange(fileObj) {
       this.loading = true;
       this.fileList = [fileObj];
-      const file =fileObj.raw
+      const file = fileObj.raw
       console.log(getFileType(file), getFileSize(file))
       if (isCanDealPack(file)) {
         this.previewPackage(file)
@@ -212,7 +214,7 @@ export default {
       const { name } = file;
       // 取得扩展名
       const extend = getExtend(name).toLowerCase();
-      console.log(name,extend)
+      console.log(name, extend)
       // 输出目的地
       const { output } = this.$refs;
       // 生成新的dom
@@ -228,9 +230,9 @@ export default {
         render(buffer, extend, child).then(resolve).catch(reject)
       );
     },
-    extractText(){
+    extractText() {
       var text = document.querySelector(".preview-cont").innerText
-      var textArr =text.split("\n").filter((v)=>{return v.trim().length> 0});
+      var textArr = text.split("\n").filter((v) => { return v.trim().length > 0 });
       // text = text.replace(/\n/g,"<br/>")
       this.text = textArr.join("<br/>");
 
@@ -241,11 +243,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.upload-demo{
+.upload-demo {
   margin: 10px auto;
   text-align: center;
 }
+
 .flex {
   display: flex;
 }
@@ -312,7 +314,8 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
 }
+
 .image-cont img {
-  max-width:500px;
+  max-width: 500px;
 }
 </style>

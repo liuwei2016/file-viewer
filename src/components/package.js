@@ -15,6 +15,13 @@ export async function hasEncryptedData(file){
     const archive = await Archive.open(file);
     return  await archive.hasEncryptedData();
 }
+// 移除mac压缩包缩略信息
+function removeMacInfo(obj){
+    if(obj["__MACOSX"]){
+        delete obj["__MACOSX"]
+    }
+    return obj
+}
 // 获取解压后的压缩包信息
 // outputs
 // {
@@ -29,6 +36,8 @@ export async function getPackageInfo(file) {
     let obj = null;
     const archive = await Archive.open(file);
     obj = await archive.extractFiles();
+    console.log(obj)
+    removeMacInfo(obj)
     return { 
         extractInfo: obj,
         // filesInfo:filesObj
@@ -45,6 +54,8 @@ export async function getPackageInfo(file) {
 //     },
 //     "README.md": {CompressedFile}
 // }
+
+
 export async function getCompressedPackageInfo(file) {
     let obj = null;
     const archive = await Archive.open(file);
