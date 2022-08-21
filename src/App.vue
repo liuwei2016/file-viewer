@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Demo msg="Welcome to Your Vue.js App"/>
+    <!-- <PDF/> -->
   </div>
 </template>
 
 <script>
 import Demo from './components/Demo.vue'
+// import PDF from './components/PDF.vue'
 
 export default {
   name: 'App',
   components: {
-    Demo
+    Demo,
+    // PDF
   }
 }
 </script>

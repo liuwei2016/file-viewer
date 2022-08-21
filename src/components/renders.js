@@ -59,8 +59,8 @@ const handlers = [
   // 使用pdfjs，渲染pdf，效果最好
   {
     accepts: ["pdf"],
-    handler: async (buffer, target) => {
-      return renderPdf(buffer, target);
+    handler: async (buffer, target,type,file) => {
+      return renderPdf(buffer, target,type,file);
     },
   },
   // 图片过滤器

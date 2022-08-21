@@ -58,7 +58,7 @@ import { getPackageInfo } from "./package";
 import renders from './renders';
 
 window._fileInfo = {} //压缩包 文件对象
-// console.log(render, Object.keys(renders))
+console.log(render, Object.keys(renders))
 const acceptTypes = Object.keys(renders)
 
 // 将对象转成树结构
@@ -227,7 +227,7 @@ export default {
       const child = output.appendChild(node);
       // 调用渲染方法进行渲染
       return new Promise((resolve, reject) =>
-        render(buffer, extend, child).then(resolve).catch(reject)
+        render(buffer, extend, child,file).then(resolve).catch(reject)
       );
     },
     extractText() {

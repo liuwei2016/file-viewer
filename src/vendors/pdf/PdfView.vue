@@ -27,6 +27,7 @@ export default {
   name: "PdfView",
   props: {
     data: ArrayBuffer,
+    file:File
   },
   data() {
     return {

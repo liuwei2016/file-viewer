@@ -1,8 +1,9 @@
 import Vue from 'vue';
-import PdfView from './PdfView';
+import PdfView from './PdfView2';
 
-export default async function renderPdf(buffer, target) {
+export default async function renderPdf(buffer, target,type,file) {
+  console.log(buffer)
   return new Vue({
-    render: h => h(PdfView, { props: { data: buffer } }),
+    render: h => h(PdfView, { props: { data: buffer ,file:file} }),
   }).$mount(target)
 }

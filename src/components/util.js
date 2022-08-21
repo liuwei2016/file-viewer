@@ -34,12 +34,12 @@ export function getExtend(name) {
 
  
 
-export async function render(buffer, type, target) {
+export async function render(buffer, type, target,file) {
   const handler = renders[type];
   if (handler) {
-    return handler(buffer, target,type);
+    return handler(buffer, target,type,file);
   }
-  return renders.error(buffer, target, type);
+  return renders.error(buffer, target, type,file);
 }
 
 export function getFileType(file){
