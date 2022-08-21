@@ -95,6 +95,21 @@ export const fileByBase64 = (file, callback) => {
   };
 };
 
+//将arr_buffer解码成base64 url
+export function arrayBufferToUrl(arr_buffer,type){
+  var uInt8Array = new Uint8Array(arr_buffer)
+  var i = uInt8Array.length;
+  var binaryString = new Array(i);
+  while (i--)
+  {
+    binaryString[i] = String.fromCharCode(uInt8Array[i]);
+  }
+  var data = binaryString.join('');
+  var base64 = window.btoa(data);
+  var url=`data:image/${type};base64,` + base64;
+  return url 
+}
+
 export function getFileSize(file){
  return  Math.floor(file.size/1024) +"kb"
 }
