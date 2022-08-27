@@ -114,28 +114,81 @@ export function getFileSize(file){
  return  Math.floor(file.size/1024) +"kb"
 }
 
+var imgReader = function( item ){
+  var blob = item.getAsFile(),
+      reader = new FileReader();
+  // 读取文件后将其显示在网页中
+  reader.onload = function( e ){
+      var img = new Image();
+
+      img.src = e.target.result;
+      document.body.appendChild( img );
+  };
+  // 读取文件
+  reader.readAsDataURL( blob );
+};
+
 export function  initPasteImage(callback){
   function handlerPaste(event) {
-    let items = event.clipboardData && event.clipboardData.items;
-    console.log('items', items);
-    let file = null;
-    if (items && items.length) {
-        // 检索剪切板 items
-        for (var i = 0; i < items.length; i++) {
-            if (items[i].type.indexOf('image') !== -1) {
-                // 此时file就是剪切板中的图片文件
-                file = items[i].getAsFile();
-                break;
+    // let items = event.clipboardData && event.clipboardData.items;
+    // let file = null;
+    // if (items && items.length) {
+    //     // 检索剪切板 items
+    //     for (var i = 0; i < items.length; i++) {
+    //         if (items[i].type.indexOf('image') !== -1) {
+    //             // 此时file就是剪切板中的图片文件
+    //             file = items[i].getAsFile();
+    //           console.log(items[i],"44")
+
+    //             break;
+    //         }
+    //       //   if (items[i].type.indexOf('text') !== -1) {
+    //       //     let text = event.clipboardData.getData('text')
+    //       //     console.log(text,"33")
+    //       //     const selection = window.getSelection();
+    //       //     if (!selection.rangeCount) return false;
+    //       //     selection.deleteFromDocument();
+    //       //     selection.getRangeAt(0).insertNode(document.createTextNode(text));
+    //       //     event.preventDefault();
+    //       //     break;
+    //       // }
+    //     }
+        // 添加到事件对象中的访问系统剪贴板的接口
+        var clipboardData = event.clipboardData,
+            i = 0,
+            items, item, types;
+
+        if( clipboardData ){
+            items = clipboardData.items;
+            if( !items ){
+                return;
+            }
+            item = items[0];
+            // 保存在剪贴板中的数据类型
+            types = clipboardData.types || [];
+            for( ; i < types.length; i++ ){
+                if( types[i] === 'Files' ){
+                    item = items[i];
+                    break;
+                }
+            }
+            // 判断是否为图片数据
+            if( item && item.kind === 'file' && item.type.match(/^image\//i) ){
+                imgReader( item );
             }
         }
     }
-    const url = window.URL.createObjectURL(file);
-    console.log('url', url);
-    const img = new Image();
-    img.src = url;
-    img.onload = () => {
-      callback(img,url)
-    };
-}
-document.addEventListener('paste', handlerPaste);
+    // console.log(file)
+    // if(file){
+    //   const url = window.URL.createObjectURL(file);
+    //   console.log('url', url);
+    //   const img = new Image();
+    //   img.src = url;
+    //   img.onload = () => {
+    //     callback(img,url)
+    //   };
+    // }
+   
+// }
+document.getElementById('testInput2').addEventListener('paste', handlerPaste);
 }

@@ -20,6 +20,7 @@ export default {
   },
   mounted() {
     this.pdfUrl = this.createdUrl(this.file)
+    console.log(this.pdfUrl)
   },
   methods: {
     createdUrl(file){

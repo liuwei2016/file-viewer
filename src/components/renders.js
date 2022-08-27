@@ -15,7 +15,6 @@ const VueWrapper = (el) => ({
 });
 
 const handlers = [
-   // 使用docxjs支持，目前效果最好的渲染器
    {
     accepts: ["zip","rar","7z"],
     handler: async (buffer, target) => {

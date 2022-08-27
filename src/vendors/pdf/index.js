@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import PdfView from './PdfView2';
+import PdfView from './PdfView';
 
 export default async function renderPdf(buffer, target,type,file) {
   console.log(buffer)

@@ -10,7 +10,7 @@
     </div>
     <div class="container flex">
 
-      <div class="box1 box">
+      <div style="margin-left:130px" class="box1 box">
         <el-upload class="upload-demo" drag action="/" :on-change="handleChange" :auto-upload="false"
           :file-list="fileList">
           <i class="el-icon-upload"></i>
@@ -108,6 +108,7 @@ export default {
       acceptTypes: acceptTypes,
       treeData: [],
       fileList: [],
+      textValue:'123',
       compressedFileNum: 0, //压缩包 文件数量
       text: '', //当前文信息
       curType: '', //当前预览的格式类型
@@ -139,11 +140,6 @@ export default {
     }
   },
   mounted() {
-    function showImage(img, url) {
-      // console.log(img,url)
-      document.querySelector(".image-cont").appendChild(img)
-    }
-    initPasteImage(showImage)
   },
   methods: {
     canPreview(data) {
