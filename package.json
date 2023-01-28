@@ -28,6 +28,7 @@
     "qs": "^6.10.3",
     "v-viewer": "^1.6.4",
     "vue": "^2.6.11",
+    "vue-pdf-embed": "^1.1.5",
     "web-worker": "^1.0.0"
   },
   "devDependencies": {
