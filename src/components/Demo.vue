@@ -40,6 +40,17 @@
         <el-button @click="extractText" size="mini" type="success">
           提取文字
         </el-button>
+        <el-button @click="extractTitle" size="mini" type="info">
+          提取标题
+        </el-button>
+        <el-button @click="extractTitle" size="mini" type="danger">
+          提取链接
+        </el-button>
+
+        <el-button @click="extractTitle" size="mini" type="default">
+          提取关键词
+        </el-button>
+
         <div v-html="text" class="text-cont">
         </div>
       </div>
@@ -60,6 +71,83 @@ import renders from './renders';
 window._fileInfo = {} //压缩包 文件对象
 console.log(render, Object.keys(renders))
 const acceptTypes = Object.keys(renders)
+// 将预览内容转为文字信息 
+window._textInfo =  [
+  {
+    page:1,
+    html:'',
+    text:'',
+    maxFontSize:28,
+    fontSizeArr:[],
+    maxFontSizeInfo:{
+    },
+    textInfo:[
+      {
+        fontSize:12,
+        replaceText:'',
+        text:'',
+        level:'12'
+      }
+    ]
+  }
+]
+
+function computedTextInfo(container){
+  var obj =  {
+    page:1,
+    html:'',
+    text:'',
+    maxFontSize:28,
+    fontSizeArr:[],
+    maxFontSizeInfo:{
+    },
+    textInfo:[
+      {
+        fontSize:12,
+        replaceText:'',
+        text:'',
+        level:'12'
+      }
+    ]
+  }
+ let childNodes = container.childNodes;
+ if(!childNodes.length){
+  console.log("该页面可能为影印版")
+  return "没有文字"
+ }
+ let arrSet =  new Set();
+ let textInfo=[]
+ console.log( container,container.childNodes);
+
+ childNodes.forEach((v,i)=>{
+  if(v.style&&v.style.fontSize){
+    let fontSize = Math.floor(v.style.fontSize.replace('px',''))
+    let textContent =v.textContent.replace(/\r|\n|\s+/g,"")
+    if(textContent){
+      textInfo.push({
+        text:textContent,
+        size:fontSize
+      })
+    }
+    arrSet.add(fontSize)
+  }
+
+ })
+ let textInfo2 = [];
+ textInfo.forEach((v,i)=>{
+  let end =  textInfo2[ textInfo2.length-1];
+  if(end && textInfo[i].size === end.size){
+    textInfo2[textInfo2.length-1].text +=textInfo[i].text;
+  }else{
+    textInfo2.push(v)
+  }
+ })
+ return {
+    fontSizeArr: Array.from(arrSet),
+    textInfo,
+    textInfo2
+ }
+}
 
 // 将对象转成树结构
 function objToTree(objData, everyFileCallback) {
@@ -196,6 +284,9 @@ export default {
     },
     handleChange(fileObj) {
       this.loading = true;
+      this.treeData =[];
+      this.compressedFileNum = 0;
+
       this.fileList = [fileObj];
       const file = fileObj.raw
       console.log(getFileType(file), getFileSize(file))
@@ -217,21 +308,37 @@ export default {
       const node = document.createElement("div");
       // 添加孩子，防止vue实例替换dom元素
       if (this.last) {
+        console.log("删除",this.last.$el);
         output.removeChild(this.last.$el);
         this.last.$destroy();
       }
       const child = output.appendChild(node);
       // 调用渲染方法进行渲染
       return new Promise((resolve, reject) =>
-        render(buffer, extend, child,file).then(resolve).catch(reject)
+        setTimeout(()=>{
+          render(buffer, extend, child,file).then(resolve).catch(reject)
+        },300)
       );
     },
     extractText() {
-      var text = document.querySelector(".preview-cont").innerText
-      var textArr = text.split("\n").filter((v) => { return v.trim().length > 0 });
-      // text = text.replace(/\n/g,"<br/>")
-      this.text = textArr.join("<br/>");
+      var text = document.querySelector(".preview-cont").textContent
+      // var textArr = text.split("\n").filter((v) => { return v.trim().length > 0 });
+      // // text = text.replace(/\n/g,"<br/>")
+      // this.text = textArr.join("");
+      this.text=text;
+    },
 
+    
+    extractTitle(){
+      let embed = document.querySelector(".vue-pdf-embed");
+
+      if(embed){
+       let page = embed.childNodes[2];
+       let textLayer = page.querySelector(".textLayer");
+
+       let result =  computedTextInfo(textLayer)
+       console.log(result);
+      }
     }
   },
 };
