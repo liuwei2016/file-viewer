@@ -10,14 +10,14 @@
     </div>
     <div class="container flex">
 
-      <div style="margin-left:130px" class="box1 box">
+      <section style="margin-left:130px" class="box1 box">
         <el-upload class="upload-demo" drag action="/" :on-change="handleChange" :auto-upload="false"
           :file-list="fileList">
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
         </el-upload>
-        <div v-if="compressedFileNum">总共{{compressedFileNum}}文件</div>
+        <div v-if="compressedFileNum">总共{{ compressedFileNum }}文件</div>
         <el-tree :default-expanded-keys="[2]" node-key="id" :data="treeData" :props="defaultProps">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }} _文件{{ data.id }}</span>
@@ -34,30 +34,44 @@
         </el-tree>
         <!-- 图片提取 -->
         <div class="image-cont">
-
+          <img v-if="img" style="width:400px" :src="img" />
         </div>
-        <!-- 文字提取 -->
-        <el-button @click="extractText" size="mini" type="success">
-          提取文字
-        </el-button>
-        <el-button @click="extractTitle" size="mini" type="info">
-          提取标题
-        </el-button>
-        <el-button @click="extractTitle" size="mini" type="danger">
-          提取链接
-        </el-button>
+        <div>
 
-        <el-button @click="extractTitle" size="mini" type="default">
-          提取关键词
-        </el-button>
-
+          第<el-input style="display: inline-block; width: 50px;" v-model="pageNum" size="mini" />
+          页
+          <!-- 文字提取 -->
+          <el-button @click="extractText" size="mini" type="success">
+            提取文字
+          </el-button>
+          <el-button @click="extractTitle" size="mini" type="info">
+            提取标题
+          </el-button>
+          <el-button @click="extractTitle" size="mini" type="danger">
+            提取链接
+          </el-button>
+          <el-button @click="extractTitle" size="mini" type="default">
+            提取关键词
+          </el-button>
+          <br />
+          <br />
+          图片质量：
+          <el-input style="display: inline-block; width: 50px;" v-model="quality" size="mini" />
+          <el-button @click="getImage" size="mini" type="default">
+            获得图片
+          </el-button>
+          <el-button @click="getCompressedImage" size="mini" type="default">
+            获得压缩图片
+          </el-button>
+        </div>
         <div v-html="text" class="text-cont">
-        </div>
       </div>
+      </section>
+
       <div class="box2 box">
-        <div v-show="loading" class="well loading">正在加载中，请耐心等待...</div>
-        <div v-show="!loading" class="well preview-cont" ref="output"></div>
-      </div>
+      <div v-show="loading" class="well loading">正在加载中，请耐心等待...</div>
+      <div v-show="!loading" class="well preview-cont" ref="output"></div>
+    </div>
     </div>
   </div>
 </template>
@@ -72,81 +86,81 @@ window._fileInfo = {} //压缩包 文件对象
 console.log(render, Object.keys(renders))
 const acceptTypes = Object.keys(renders)
 // 将预览内容转为文字信息 
-window._textInfo =  [
+window._textInfo = [
   {
-    page:1,
-    html:'',
-    text:'',
-    maxFontSize:28,
-    fontSizeArr:[],
-    maxFontSizeInfo:{
+    page: 1,
+    html: '',
+    text: '',
+    maxFontSize: 28,
+    fontSizeArr: [],
+    maxFontSizeInfo: {
     },
-    textInfo:[
+    textInfo: [
       {
-        fontSize:12,
-        replaceText:'',
-        text:'',
-        level:'12'
+        fontSize: 12,
+        replaceText: '',
+        text: '',
+        level: '12'
       }
     ]
   }
 ]
 
-function computedTextInfo(container){
-  var obj =  {
-    page:1,
-    html:'',
-    text:'',
-    maxFontSize:28,
-    fontSizeArr:[],
-    maxFontSizeInfo:{
+function computedTextInfo(container) {
+  var obj = {
+    page: 1,
+    html: '',
+    text: '',
+    maxFontSize: 28,
+    fontSizeArr: [],
+    maxFontSizeInfo: {
     },
-    textInfo:[
+    textInfo: [
       {
-        fontSize:12,
-        replaceText:'',
-        text:'',
-        level:'12'
+        fontSize: 12,
+        replaceText: '',
+        text: '',
+        level: '12'
       }
     ]
   }
- let childNodes = container.childNodes;
- if(!childNodes.length){
-  console.log("该页面可能为影印版")
-  return "没有文字"
- }
- let arrSet =  new Set();
- let textInfo=[]
- console.log( container,container.childNodes);
+  let childNodes = container.childNodes;
+  if (!childNodes.length) {
+    console.log("该页面可能为影印版")
+    return "没有文字"
+  }
+  let arrSet = new Set();
+  let textInfo = []
+  console.log(container, container.childNodes);
 
- childNodes.forEach((v,i)=>{
-  if(v.style&&v.style.fontSize){
-    let fontSize = Math.floor(v.style.fontSize.replace('px',''))
-    let textContent =v.textContent.replace(/\r|\n|\s+/g,"")
-    if(textContent){
-      textInfo.push({
-        text:textContent,
-        size:fontSize
-      })
+  childNodes.forEach((v, i) => {
+    if (v.style && v.style.fontSize) {
+      let fontSize = Math.floor(v.style.fontSize.replace('px', ''))
+      let textContent = v.textContent.replace(/\r|\n|\s+/g, "")
+      if (textContent) {
+        textInfo.push({
+          text: textContent,
+          size: fontSize
+        })
+      }
+      arrSet.add(fontSize)
     }
-    arrSet.add(fontSize)
-  }
 
- })
- let textInfo2 = [];
- textInfo.forEach((v,i)=>{
-  let end =  textInfo2[ textInfo2.length-1];
-  if(end && textInfo[i].size === end.size){
-    textInfo2[textInfo2.length-1].text +=textInfo[i].text;
-  }else{
-    textInfo2.push(v)
-  }
- })
- return {
+  })
+  let textInfo2 = [];
+  textInfo.forEach((v, i) => {
+    let end = textInfo2[textInfo2.length - 1];
+    if (end && textInfo[i].size === end.size) {
+      textInfo2[textInfo2.length - 1].text += textInfo[i].text;
+    } else {
+      textInfo2.push(v)
+    }
+  })
+  return {
     fontSizeArr: Array.from(arrSet),
     textInfo,
     textInfo2
- }
+  }
 }
 
 // 将对象转成树结构
@@ -196,7 +210,7 @@ export default {
       acceptTypes: acceptTypes,
       treeData: [],
       fileList: [],
-      textValue:'123',
+      textValue: '123',
       compressedFileNum: 0, //压缩包 文件数量
       text: '', //当前文信息
       curType: '', //当前预览的格式类型
@@ -204,6 +218,9 @@ export default {
         children: 'children',
         label: 'name'
       },
+      img: '',
+      quality: 1, //图片质量
+      pageNum: 1,
       // 加载状态跟踪
       loading: false,
       // 上个渲染实例
@@ -272,7 +289,7 @@ export default {
     async previewPackage(file) {
       try {
         let data = await this.getPackageInfo(file)
-        let info = objToTree(data,manageFile)
+        let info = objToTree(data, manageFile)
         window._pack_info = info;
         this.treeData = info.dir[0].children
         this.compressedFileNum = info.count;
@@ -284,7 +301,7 @@ export default {
     },
     handleChange(fileObj) {
       this.loading = true;
-      this.treeData =[];
+      this.treeData = [];
       this.compressedFileNum = 0;
 
       this.fileList = [fileObj];
@@ -308,16 +325,16 @@ export default {
       const node = document.createElement("div");
       // 添加孩子，防止vue实例替换dom元素
       if (this.last) {
-        console.log("删除",this.last.$el);
+        console.log("删除", this.last.$el);
         output.removeChild(this.last.$el);
         this.last.$destroy();
       }
       const child = output.appendChild(node);
       // 调用渲染方法进行渲染
       return new Promise((resolve, reject) =>
-        setTimeout(()=>{
-          render(buffer, extend, child,file).then(resolve).catch(reject)
-        },300)
+        setTimeout(() => {
+          render(buffer, extend, child, file).then(resolve).catch(reject)
+        }, 300)
       );
     },
     extractText() {
@@ -325,21 +342,45 @@ export default {
       // var textArr = text.split("\n").filter((v) => { return v.trim().length > 0 });
       // // text = text.replace(/\n/g,"<br/>")
       // this.text = textArr.join("");
-      this.text=text;
+      this.text = text;
     },
 
-    
-    extractTitle(){
+
+    extractTitle() {
       let embed = document.querySelector(".vue-pdf-embed");
 
-      if(embed){
-       let page = embed.childNodes[2];
-       let textLayer = page.querySelector(".textLayer");
+      if (embed) {
+        let page = embed.childNodes[2];
+        let textLayer = page.querySelector(".textLayer");
 
-       let result =  computedTextInfo(textLayer)
-       console.log(result);
+        let result = computedTextInfo(textLayer)
+        console.log(result);
+      }
+    },
+    getImage() {
+      let embed = document.querySelector(".vue-pdf-embed");
+      if (embed) {
+        let page = embed.childNodes[this.pageNum - 1];
+        let canvas1 = page.querySelector("canvas");
+        if (canvas1.getContext) {
+          //  var ctx = canvas1.getContext("2d");                
+          var myImage = canvas1.toDataURL("image/jpeg", Number(this.quality));
+          this.img = myImage
+          console.log(myImage);
+        }
+      }
+    },
+    getCompressedImage() {
+      let embed = document.querySelector(".vue-pdf-embed");
+      if (embed) {
+        let page = embed.childNodes[2];
+        let textLayer = page.querySelector(".textLayer");
+
+        let result = computedTextInfo(textLayer)
+        console.log(result);
       }
     }
+
   },
 };
 </script>
